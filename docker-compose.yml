@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  account-service:
+    image: bachaladivya/account-service:v2
+    ports:
+      - "3001:3000"
+    deploy:
+      replicas: 2
+
+  transaction-service:
+    image: bachaladivya/transaction-service:v2
+    ports:
+      - "3002:3000"
+    deploy:
+      replicas: 2
+
+  notification-service:
+    image: bachaladivya/notification-service:v1
+    ports:
+      - "3003:3000"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: any
+
+networks:
+  default:
+    driver: overlay
